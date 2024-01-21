@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'homepage'%}">TODO Management</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{%url 'add_tasks'%}"
+                >Add Task</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'completed_tasks'%}"
+                >Complete Task</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'show_tasks'%}">Show Task</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+    <br /><br /><br /><br />
+    <div style="width: 75%; margin: auto; text-align:center; font-size: 70;p">
+      <h1>"Make your learning strategy faster."</h1>
+      <p>
+       <span style = "color: #008000;"> <h5>"Success isn't always about greatness; it's about consistency. Consistent hard work leads to success."</h5></span>
+      </p>
+      <a href="{% url 'add_tasks' %}">
+        <button
+          type="button"
+          class="btn btn-primary"
+          style="background-color:Orange;">
+          Add your First Task
+        </button>
+      </a>
+    </div>
+    {% endblock %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+  </body>
+</html>

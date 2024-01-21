@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="width: 75%; margin: auto;">
+    <br/>
+    <h1 style="text-align: center; width: 100%; background-color: Orange; color: LightCyan; padding: 10px;"> Tasks List </h1>
+
+    {% if tasks %}
+        <table class="table table-bordered">
+            <thead>
+                <tr style="text-align: center;">
+                    <th scope="col">Title</th>
+                    <th scope="col">Descriptions</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" style="text-align: center;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in tasks %}
+                    <tr>
+                        <td style="width: 210px;">{{ item.taskTitle }}</td>
+                        <td>{{ item.taskDescription }}</td>
+                        {%if item.is_completed%}
+                            <td style="text-align: center;">Complete</td>
+                        {%else%}
+                            <td style="text-align: center;">Pending</td>
+                        {%endif%}
+                        <td class="action-cell">
+                            <div class="btn-group" role="group" aria-label="Task Actions">
+                                <a href="{% url 'edit_task' id=item.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{% url 'delete_task' id=item.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{% url 'complete_task' id=item.id %}" class="btn btn-success btn-sm">Complete</a>
+                            </div>
+                        </td>
+                          
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h1>Currently No Task Is Availabe</h1>
+    {% endif %}
+    <a href="{% url 'add_tasks' %}">
+        <button type="button" class="btn btn-primary" style="margin-bottom: 10px;">Add Task</button>
+    </a>
+</div>
+
+
+{% endblock content %}

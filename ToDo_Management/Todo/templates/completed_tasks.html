@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="width: 75%; margin: auto;">
+    <br/>
+    <h1 style="text-align: center; width: 100%; background-color: Orange; color: white; padding: 10px;">Successfully Completed Task List</h1>
+
+    {% if completed_tasks %}
+        <table class="table table-bordered">
+            <thead>
+                <tr style="text-align: center;">
+                    <th scope="col"><b>Title</b></th>
+                    <th scope="col"><b>Descriptions</b></th>
+                    <th scope="col"><b>Status</b></th>
+                    <th scope="col" style="text-align: center;"><b>Actions</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in completed_tasks %}
+                    <tr>
+                        <td style="width: 210px;">{{ item.taskTitle }}</td>
+                        <td>{{ item.taskDescription }}</td>
+                        {%if item.is_completed%}
+                            <td style="text-align: center;">Complete</td>
+                        {%else%}
+                            <td style="text-align: center;">Pending</td>
+                        {%endif%}                            
+                        <td style="width: 210px; text-align: center;">
+                            <a href="{% url 'delete_completed_task' id=item.id %}">
+                                <button type="button" class="btn btn-success btn-sm">Complete</button>
+                            </a>                              
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h1>No No Data Is Availabe</h1>
+    {% endif %}
+
+</div>
+{% endblock %}
